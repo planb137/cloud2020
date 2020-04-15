@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 /**
  * @author planb
@@ -55,6 +56,7 @@ public class PaymentController {
         }
     }
 
+    // 测试服务发现内容
     @GetMapping(value = "/payment/discovery")
     public Object discovery()
     {
@@ -69,4 +71,17 @@ public class PaymentController {
         }
         return this.discoveryClient;
     }
+
+    //测试OpenFegin超时控制
+    @GetMapping(value = "/payment/feign/timeout")
+    public String paymentFeignTimeout() {
+        try {
+            TimeUnit.SECONDS.sleep(3);
+        } catch (Exception e){
+            e.printStackTrace();
+        } finally {
+            return serverPort;
+        }
+    }
+
 }

@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import java.util.concurrent.TimeUnit;
 
 /**
  * @author planb
@@ -44,6 +45,18 @@ public class PaymentController {
             return new CommonResult(200, "查询成功！ serverPort"+ serverPort, payment);
         } else {
             return new CommonResult(444, "没有对应记录，查询id"+id, null);
+        }
+    }
+
+    //测试OpenFegin超时控制
+    @GetMapping(value = "/payment/feign/timeout")
+    public String paymentFeignTimeout() {
+        try {
+            TimeUnit.SECONDS.sleep(3);
+        } catch (Exception e){
+            e.printStackTrace();
+        } finally {
+            return serverPort;
         }
     }
 }
