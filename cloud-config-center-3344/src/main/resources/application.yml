@@ -14,7 +14,20 @@ spring:
             - springcloud-config
       ##读取分支
       label: master
+  #rabbit相关配置 15672是web管理界面的端口，5672是MQ访问的端口
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: guest
+    password: guest
 
+
+#rabbitmq相关设置 ，暴露 bus刷新配置的端点
+management:
+  endpoints:
+    web:
+      exposure:
+        include: 'bus-refresh'
 eureka:
   client:
     service-url:

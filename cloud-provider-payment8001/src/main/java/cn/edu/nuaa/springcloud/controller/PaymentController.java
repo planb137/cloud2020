@@ -3,8 +3,6 @@ package cn.edu.nuaa.springcloud.controller;
 import cn.edu.nuaa.springcloud.entities.CommonResult;
 import cn.edu.nuaa.springcloud.entities.Payment;
 import cn.edu.nuaa.springcloud.service.PaymentService;
-import com.netflix.appinfo.InstanceInfo;
-import com.sun.tools.internal.xjc.model.CElement;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.client.ServiceInstance;
@@ -86,6 +84,10 @@ public class PaymentController {
         } finally {
             return serverPort;
         }
+    }
+    @GetMapping(value="/payment/zipkin")
+    public String paymentZipkin() {
+        return "hello,i am payment Zipkin server fallback,O(∩_∩)O哈哈~";
     }
 
 }
