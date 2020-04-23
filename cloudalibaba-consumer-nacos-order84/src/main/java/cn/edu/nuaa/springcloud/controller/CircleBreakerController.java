@@ -45,13 +45,13 @@ public class CircleBreakerController {
 
     public CommonResult handlerFallback(@PathVariable Long id, Throwable e) {
         Payment payment = new Payment(id, "null");
-        return new CommonResult(444, "异常handlerFallback，exception内容： " + e.getMessage(), payment);
+        return new CommonResult(444, "异常handlerFallback，exception内容： 服务器内部出错，请稍后再试，o(╥﹏╥)o ");
     }
 
 
     public CommonResult blockHandler(@PathVariable Long id, BlockException e) {
         Payment payment = new Payment(id, "null");
-        return new CommonResult(444, "blockHandler-sentinel 限流，BlockException： " + e.getMessage(), payment);
+        return new CommonResult(444, "blockHandler-sentinel 限流，系统繁忙，请稍后再试 " + e.getMessage(), payment);
     }
 
     //======= OpenFeign
